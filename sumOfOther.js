@@ -1,8 +1,19 @@
- function sumOfOther(arr) {
-	const result = [];
-	for (let i = 0; i < arr.length; i++) {
-		let sum = (arr.reduce(function(a, b) {return a + b;}) - arr[i]);
-		result.push(sum);
-	}
-	return result;
-} 
+function make() {
+  const arr = [];
+  arguments.forEach((item) => {
+    arr.push(item);
+  });
+
+  function myFun(arg) {
+    if (typeof arg === 'function') return arr.reduce(arg);
+
+    arguments.forEach = [].forEach;
+    arguments.forEach((item) => {
+      arr.push(item);
+    });
+
+    return myFun;
+  }
+
+  return myFun;
+};
